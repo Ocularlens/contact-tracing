@@ -44,6 +44,18 @@ class PersonController extends Controller
             'email' => 'required|unique:App\Person,email',
             'contact' => 'required|numeric',
             'password' => 'required|min:8'
+        ],
+        [
+            'name.required' => 'Name is required',
+            'name.max' => 'Name must be less than 101 characters',
+            'name.min' => 'Name must be 5 letters or more',
+            'email.required' => 'E-mail address is required',
+            'email.unique' => 'E-mail address is already registered',
+            'contact.required' => 'Contact is required',
+            'contact.numeric' => 'Contact must be numeric',
+            'password.required' => 'Password is required',
+            'password.min' => 'Password must be 8 characters long'
+
         ]);
 
         $person = new Person([
@@ -107,8 +119,14 @@ class PersonController extends Controller
         //validate
         $request->validate([
             'old-password' => 'required',
-            'new-password' => 'required',
+            'new-password' => 'required||min:8',
             'con-new-password' => 'required'
+        ],
+        [
+            'new-password.required' => 'New password is required',
+            'old-password.required' => 'Old password is required',
+            'con-new-password.required' => 'Confirm the new password',
+            'new-password.min' => 'New password must be 8 characters long'
         ]);
         $person =  Auth::user();
         //check if password matches the old one
@@ -134,6 +152,11 @@ class PersonController extends Controller
         $request->validate([
             'old-email' => 'required',
             'new-email' => 'required|unique:App\Person,email'
+        ],
+        [
+            'old-email.required' => 'Old e-mail address is required',
+            'new-email.required' => 'New e-mail address is required',
+            'new-email.unique' => 'E-mail address is already registered'
         ]);
         $person =  Auth::user();
         //check if new email matches the old email
@@ -154,6 +177,11 @@ class PersonController extends Controller
         $request->validate([
             'old-contact' => 'required',
             'new-contact' => 'required|numeric'
+        ],
+        [
+            'old-contact.required' => 'Old contact is required',
+            'new-contact.required' => 'New contact is required',
+            'new-contact.numeric' => 'Contact must be numeric'
         ]);
         $person =  Auth::user();
         //check if new email matches the old contact

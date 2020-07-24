@@ -51,6 +51,11 @@ class StoreController extends Controller
         $request->validate([
             'name' => 'required|max:20', 
             'description' => 'max:100'
+        ],
+        [
+            'name.required' => 'Store name is required',
+            'name.max' => 'Store name is upto 20 characters only',
+            'description.max' => 'Description is upto 100 characters only'
         ]);
 
         $qrCode = str_replace ('/', '', Hash::make($request["name"]));
@@ -106,6 +111,10 @@ class StoreController extends Controller
         $request->validate([
             'name' => 'required|max:20', 
             'description' => 'max:100'
+        ],[
+            'name.required' => 'Store name is required',
+            'name.max' => 'Store name is upto 20 characters only',
+            'description.max' => 'Description is upto 100 characters only'
         ]);
 
         $store->store_name = $request['name'];

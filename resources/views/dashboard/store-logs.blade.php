@@ -10,7 +10,7 @@
                     <div class="col-md-6">    
                         <div class="row">
                             <div class="col-lg-6">
-                                {!! QrCode::size(150)->generate($_SERVER['SERVER_NAME'].'/dashboard/store/'.$store->qr_code). '/qrlog'; !!}
+                                {!! QrCode::size(150)->generate($_SERVER['SERVER_NAME'].'/dashboard/store/'.$store->qr_code.'/qrlog'); !!}
                             </div>
                             <div class="col-lg-6">
                                 Store Name : <strong>{{$store->store_name}}</strong> <br>
@@ -20,8 +20,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" style="padding-top: 10px;">
                     <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input class="form-control" id="myInput" type="text" placeholder="Search..">
+                            </div>
+                        </div>
                         <table class="table table-borderless">
                             <thead>
                                 <tr>
@@ -29,7 +34,7 @@
                                     <th>Date Visited</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="myTable">
                                 @foreach ($store->store_logs as $person)
                                     <tr>
                                         <td>{{$person->name}}</td>
@@ -38,6 +43,16 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        <script>
+                            $(document).ready(function(){
+                              $("#myInput").on("keyup", function() {
+                                var value = $(this).val().toLowerCase();
+                                $("#myTable tr").filter(function() {
+                                  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                                });
+                              });
+                            });
+                        </script>
                     </div>
                 </div>
             </div>

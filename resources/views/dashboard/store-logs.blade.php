@@ -10,7 +10,7 @@
                     <div class="col-md-6">    
                         <div class="row">
                             <div class="col-lg-6">
-                                {!! QrCode::size(150)->generate($_SERVER['SERVER_NAME'].'/dashboard/store/'.$store->qr_code). '/qrlog'; !!}
+                                {!! QrCode::size(150)->generate($_SERVER['SERVER_NAME'].'/store/'.$store->qr_code); !!}
                             </div>
                             <div class="col-lg-6">
                                 Store Name : <strong>{{$store->store_name}}</strong> <br>

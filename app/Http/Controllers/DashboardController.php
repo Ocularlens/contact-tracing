@@ -20,4 +20,8 @@ class DashboardController extends Controller
         return redirect()->intended('/');
     }
 
+    public function try_get_api()
+    {
+       
+    }
 }

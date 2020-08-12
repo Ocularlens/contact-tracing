@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Person;
+use App\Store;
 
 class AdminHomeController extends Controller
 {
@@ -39,6 +41,36 @@ class AdminHomeController extends Controller
 
         return view('admin.stores')->with([
             'stores' => $stores
+        ]);
+    }
+
+    public function delete_user($id)
+    {
+        $person = Person::find($id);
+        $person->delete();
+        return redirect('admin/users');
+    }
+
+    public function delete_store($id)
+    {
+        $store = Store::find($id);
+        $store->delete();
+        return redirect('admin/stores');
+    }
+
+    public function logout()
+    {
+        Auth::guard('admin')->logout();
+        return redirect('/admin');
+    }
+
+    public function admins()
+    {
+        $admins = DB::table('admins')
+            ->where('id', '<>', Auth::guard('admin')->user()->id)
+            ->get();
+        return view('admin.admins')->with([
+            'admins' => $admins
         ]);
     }
 }

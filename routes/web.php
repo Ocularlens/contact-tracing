@@ -87,9 +87,7 @@ Route::group(array('prefix'=>'dashboard'), function(){
     Route::resource('store', 'StoreController');
 });
 
-
-Route::prefix('admin')->group(function () {
-
+Route::group(array('prefix'=>'admin'), function() {
     Route::get('/', 'AdminHomeController@index');
 
     Route::get('/login', 'LoginController@showAdminLoginForm');
@@ -99,4 +97,26 @@ Route::prefix('admin')->group(function () {
     Route::get('/users', 'AdminHomeController@users');
 
     Route::get('/stores', 'AdminHomeController@stores');
+
+    Route::get('/users/{id}/delete', 'AdminHomeController@delete_user');
+
+    Route::get('/stores/{id}/delete', 'AdminHomeController@delete_store');
+
+    Route::get('/logout', 'AdminHomeController@logout');
+
+    Route::group(array('prefix'=>'admins'), function() {
+        Route::get('/', 'AdminHomeController@admins');
+
+        Route::view('/new-admin', 'admin.new-admin');
+
+        Route::post('/new-admin', 'AdminController@store');
+    });
+
+    Route::group(array('prefix'=>'account'), function() {
+        Route::get('/', 'AdminController@index');
+
+        Route::post('/change-username', 'AdminController@change_username');
+
+        Route::post('/change-password', 'AdminController@change_password');
+    });
 });

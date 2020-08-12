@@ -9,14 +9,14 @@
                     <h4 class="card-title">Register</h4>
                     <p class="card-text">Fill up the following.</p>
                     @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul> 
-                    </div>
-                @endif
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul> 
+                        </div>
+                    @endif
                     <form action="/register" method="POST">
                         @csrf
                         <div class="input-group mb-3">

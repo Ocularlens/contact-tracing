@@ -4,28 +4,29 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <h4>Users</h4>
+            <h4>Admins</h4>
+            @if (session('success'))
+                <div class="alert alert-danger">
+                    <ul>
+                        <li>{{session('success')}}</li>
+                    </ul> 
+                </div>
+            @endif
             <input id="myInput" type="text" placeholder="Search.." style="width:inherit;margin-bottom:5px">
             <table class="table">
                 <thead>
                     <tr>
-                        <th>User's Full name</th>
-                        <th>Contact</th>
-                        <th>Email address</th>
+                        <th>ID</th>
+                        <th>Username</th>
                         <th>Date Registered</th>
-                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody id="myTable">
-                    @foreach ($users as $user)
+                    @foreach ($admins as $admin)
                         <tr>
-                            <td>{{$user->name}}</td>
-                            <td>{{$user->contact}}</td>
-                            <td>{{$user->email}}</td>
-                            <td>{{date_format(date_create($user->created_at), 'M d, Y H:i:s')}}</td>
-                            <td>
-                                <a href="/admin/users/{{$user->person_id}}/delete" class="btn btn-danger">Delete</a>
-                            </td>
+                            <td>{{$admin->id}}</td>
+                            <td>{{$admin->username}}</td>
+                            <td>{{date_format(date_create($admin->created_at), 'M d, Y H:i:s')}}</td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -40,6 +41,7 @@
                   });
                 });
             </script>
+            <a href="/admin/admins/new-admin" class="btn btn-success">New Admin</a>
         </div>
     </div>
 </div>

@@ -26,7 +26,7 @@
                             <td>{{$store->store_owner}}</td>
                             <td>{{date_format(date_create($store->created_at), 'M d, Y H:i:s')}}</td>
                             <td>
-                                <a href="#" class="btn btn-danger">Delete</a>
+                                <a href="/admin/stores/{{$store->store_id}}/delete" class="btn btn-danger">Delete</a>
                             </td>
                         </tr>
                     @endforeach

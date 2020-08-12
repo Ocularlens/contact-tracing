@@ -30,10 +30,16 @@
               <a href="/admin/users"><span class="fa fa-user mr-3"></span> Users</a>
           </li>
           <li class="{{Request::is('admin/stores*')? ' active' : ''}}">
-            <a href="/admin/stores"><span class="fa fa-sticky-note mr-3"></span> Stores</a>
+            <a href="/admin/stores"><span class="fa fa-shopping-cart"></span> Stores</a>
           </li>
           <li class="{{Request::is('admin/account*')? ' active' : ''}}">
-            <a href="/admin/account"><span class="fa fa-sticky-note mr-3"></span> Account</a>
+            <a href="/admin/account"><span class="fa fa-user-circle-o"></span> Account</a>
+          </li>
+          <li class="{{Request::is('admin/admins*')? ' active' : ''}}">
+            <a href="/admin/admins"><span class="fa fa-user-o"></span> Admins</a>
+          </li>
+          <li>
+            <a href="/admin/logout"><span class="	fa fa-sign-out"></span> Logout</a>
           </li>
         </ul>
     	</nav>

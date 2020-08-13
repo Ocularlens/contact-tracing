@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Auth;
 class DashboardController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->middleware('auth:web');
+    }
+
     public function index()
     {
         return view('dashboard.index');
@@ -16,12 +21,7 @@ class DashboardController extends Controller
 
     public function logout()
     {
-        Auth::logout();
-        return redirect()->intended('/');
-    }
-
-    public function try_get_api()
-    {
-       
+        Auth::guard('web')->logout();
+        return redirect('login');
     }
 }

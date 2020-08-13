@@ -64,21 +64,21 @@ Route::post('/login', 'LoginController@login');
 
 //group dashboard routes
 Route::group(array('prefix'=>'dashboard'), function(){
-    Route::get('/', 'DashboardController@index')->middleware('auth');
+    Route::get('/', 'DashboardController@index');
 
-    Route::get('/logout', 'DashboardController@logout')->middleware('auth');
+    Route::get('/logout', 'DashboardController@logout');
 
-    Route::view('/change-password', 'dashboard.change-password')->middleware('auth');
+    Route::view('/change-password', 'dashboard.change-password');
 
-    Route::view('/change-email', 'dashboard.change-email')->middleware('auth');
+    Route::view('/change-email', 'dashboard.change-email');
 
-    Route::view('/change-contact', 'dashboard.change-contact')->middleware('auth');
+    Route::view('/change-contact', 'dashboard.change-contact');
 
-    Route::post('/change-password', 'PersonController@change_password')->middleware('auth');
+    Route::post('/change-password', 'PersonController@change_password');
 
-    Route::post('/change-email', 'PersonController@change_email')->middleware('auth');
+    Route::post('/change-email', 'PersonController@change_email');
 
-    Route::post('/change-contact', 'PersonController@change_contact')->middleware('auth');
+    Route::post('/change-contact', 'PersonController@change_contact');
 
     Route::get('/store/{store}/logs', 'StoreController@logs');
 

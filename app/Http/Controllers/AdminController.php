@@ -65,9 +65,9 @@ class AdminController extends Controller
 
             $admin->save();
 
-            return redirect('/admin')->with([
+            return redirect('/admin/admins')->with([
                 'success' => 'Admin account created',
-            ])
+            ]);
         }
         else{
             return redirect()

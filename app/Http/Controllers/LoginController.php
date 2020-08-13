@@ -12,7 +12,7 @@ class LoginController extends Controller
 {
     //
     use AuthenticatesUsers;
-    protected $redirectTo = '/dashboard';
+    //protected $redirectTo = '/dashboard';
 
     public function __construct()
     {
@@ -22,8 +22,8 @@ class LoginController extends Controller
   
     public function login(Request $request)
     {   
-        if (Auth::attempt($request->only('email', 'password'))) {
-            return redirect()->intended('/dashboard');
+        if (Auth::guard('web')->attempt(['email' => $request->email, 'password' => $request->password])) {
+            return redirect('dashboard');
         }
         else{
             return redirect('login')->with('error','Account Does Not Exist');
@@ -38,7 +38,7 @@ class LoginController extends Controller
     public function adminLogin(Request $request)
     {
         if (Auth::guard('admin')->attempt(['username' => $request->username, 'password' => $request->password])) {
-            return redirect()->intended('/admin');
+            return redirect('admin');
         }
         return redirect('admin/login')->with('error','Account Does Not Exist');
     }

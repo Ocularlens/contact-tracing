@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <h4>Admins</h4>
             @if (session('success'))
-                <div class="alert alert-danger">
+                <div class="alert alert-success">
                     <ul>
                         <li>{{session('success')}}</li>
                     </ul> 

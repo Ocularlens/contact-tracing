@@ -31,6 +31,7 @@
                             </div>
                             <input type="password" name="password" id="password" class="form-control">
                         </div>
+                        <input type="checkbox" name="remember" id=""> <label for="">Remember me</label>
                         <div class="row" style="text-align: right;">
                             <div class="col">
                                 <input type="submit" value="Login" class="btn btn-success btn-sm">

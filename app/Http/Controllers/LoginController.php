@@ -22,7 +22,8 @@ class LoginController extends Controller
   
     public function login(Request $request)
     {   
-        if (Auth::guard('web')->attempt(['email' => $request->email, 'password' => $request->password])) {
+        $remember_me = $request->has('remember') ? true : false; 
+        if (Auth::guard('web')->attempt(['email' => $request->email, 'password' => $request->password], $remember_me)) {
             return redirect('dashboard');
         }
         else{
@@ -37,7 +38,8 @@ class LoginController extends Controller
 
     public function adminLogin(Request $request)
     {
-        if (Auth::guard('admin')->attempt(['username' => $request->username, 'password' => $request->password])) {
+        $remember_me = $request->has('remember') ? true : false; 
+        if (Auth::guard('admin')->attempt(['username' => $request->username, 'password' => $request->password], $remember_me)) {
             return redirect('admin');
         }
         return redirect('admin/login')->with('error','Account Does Not Exist');
